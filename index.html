@@ -19,11 +19,13 @@
     }.card {
     background: rgba(0,0,0,0.25);
     backdrop-filter: blur(10px);
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     max-width: 420px;
     animation: pop 0.8s ease;
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes pop {
@@ -32,13 +34,27 @@
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 10px;
 }
 
 p {
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.photo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 15px;
+}
+
+.btn-row {
+    position: relative;
+    height: 60px;
 }
 
 button {
@@ -60,6 +76,8 @@ button {
     background: #ff1744;
     color: white;
     position: absolute;
+    left: 55%;
+    top: 0;
 }
 
 button:hover {
@@ -71,6 +89,7 @@ button:hover {
     color: #fff;
     font-size: 20px;
     animation: float 6s linear infinite;
+    z-index: 1;
 }
 
 @keyframes float {
@@ -81,25 +100,32 @@ button:hover {
 </style>
 </head>
 <body><div class="card">
-    <h1>Dipali Saini ❤️</h1>
-    <p>From the moment I met you, my world became brighter.
-    Will you be my Valentine forever? 💍</p><button class="yes" onclick="yesClick()">YES 💖</button>
-<button class="no" id="noBtn" onmouseover="moveNo()">NO 😅</button>
+    <!-- PHOTO YAHAN LAGEGI -->
+    <img src="photo.jpg" alt="Couple Photo" class="photo"><h1>Dipali Saini ❤️</h1>
+<p>From the moment I met you, my world became brighter.<br>
+Will you be my Valentine forever? 💍</p>
+
+<div class="btn-row">
+    <button class="yes" onclick="yesClick()">YES 💖</button>
+    <button class="no" id="noBtn" onclick="moveNo()">NO 😅</button>
+</div>
 
 </div><script>
 function yesClick() {
     document.body.innerHTML = `
-        <div style="text-align:center; color:white;">
+        <div style="text-align:center; color:white; z-index:5; position:relative;">
             <h1>Yayyyy!!! ❤️🎉</h1>
-            <h2>I Love You Dipali 💕</h2>
+            <h2>love uhhh bhainshhhhh 💕</h2>
             <p>This moment is saved forever.</p>
         </div>`;
 }
 
 function moveNo() {
     const btn = document.getElementById('noBtn');
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
+    const maxX = 260; // card width area
+    const maxY = 40;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
     btn.style.left = x + 'px';
     btn.style.top = y + 'px';
 }
