@@ -1,146 +1,116 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dipali ❤️ Valentine Proposal</title>
+<title>Dipali Saini ❤️</title>
+
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #ff4e8a, #ff9ecb);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        overflow: hidden;
-        color: white;
-        text-align: center;
-    }.card {
-    background: rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    max-width: 420px;
-    animation: pop 0.8s ease;
-    position: relative;
-    z-index: 2;
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ff6fa5,#ff3d7a);
+  overflow:hidden;
+  font-family: Arial, sans-serif;
 }
 
-@keyframes pop {
-    from {transform: scale(0.6); opacity:0}
-    to {transform: scale(1); opacity:1}
+/* Card */
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  color:white;
+  box-shadow:0 0 25px rgba(0,0,0,0.25);
+  z-index:2;
 }
 
 h1 {
-    font-size: 26px;
-    margin-bottom: 10px;
+  margin-bottom:10px;
 }
 
 p {
-    font-size: 18px;
-    margin-bottom: 20px;
+  font-size:18px;
 }
 
-..couple {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-  margin: 10px auto;
-  box-shadow: 0 0 15px rgba(255,0,100,0.4);
-}
-}
-
-.btn-row {
-    position: relative;
-    height: 60px;
+/* Buttons */
+.btn {
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  margin:10px;
+  cursor:pointer;
 }
 
-button {
-    padding: 12px 22px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px;
-    transition: 0.3s;
+.yes { background:#00e676; }
+.no { background:#ff1744; color:white; }
+
+/* Falling items */
+.fall {
+  position:fixed;
+  top:-50px;
+  font-size:28px;
+  animation: fall linear forwards;
+  z-index:1;
 }
 
-.yes {
-    background: #00e676;
-    color: black;
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
 }
-
-.no {
-    background: #ff1744;
-    color: white;
-    position: absolute;
-    left: 55%;
-    top: 0;
-}
-
-button:hover {
-    transform: scale(1.1);
-}
-
-.heart {
-    position: absolute;
-    color: #fff;
-    font-size: 20px;
-    animation: float 6s linear infinite;
-    z-index: 1;
-}
-
-@keyframes float {
-    from { transform: translateY(100vh) scale(0.5); opacity:1 }
-    to { transform: translateY(-10vh) scale(1.2); opacity:0 }
-}
-
 </style>
 </head>
-<body><div class="card">
-    <!-- PHOTO YAHAN LAGEGI -->
-    <img src="Photo.jpg" alt="Couple Photo" class="couple"> class="photo"><h1>Dipali Saini ❤️</h1>
-<p>From the moment I met you, my world became brighter.<br>
-Will you be my Valentine forever? 💍</p>
 
-<div class="btn-row">
-    <button class="yes" onclick="yesClick()">YES 💖</button>
-    <button class="no" id="noBtn" onclick="moveNo()">NO 😅</button>
+<body>
+
+<div class="card">
+  <h1>Dipali Saini ❤️</h1>
+  <p>
+    From the moment I met you,<br>
+    my world became brighter ✨<br><br>
+    Will you be my Valentine forever? 💍
+  </p>
+
+  <button class="btn yes" onclick="yesClick()">YES 💖</button>
+  <button class="btn no" onclick="moveNo(this)">NO 😜</button>
 </div>
 
-</div><script>
-function yesClick() {
-    document.body.innerHTML = `
-        <div style="text-align:center; color:white; z-index:5; position:relative;">
-            <h1>Yayyyy!!! ❤️🎉</h1>
-            <h2>love uhhh bhainshhhhh 💕</h2>
-            <p>This moment is saved forever.</p>
-        </div>`;
+<script>
+
+/* YES click */
+function yesClick(){
+  alert("Yayyy 💖 Best Valentine Ever!");
 }
 
-function moveNo() {
-    const btn = document.getElementById('noBtn');
-    const maxX = 260; // card width area
-    const maxY = 40;
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-    btn.style.left = x + 'px';
-    btn.style.top = y + 'px';
+/* NO button bhagega */
+function moveNo(btn){
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*80+"vh";
+  btn.style.left=Math.random()*80+"vw";
 }
 
-// floating hearts
-setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (Math.random()*3+3) + 's';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
-}, 300);
-</script></body>
+/* Falling animation items */
+const items = ["❤️","🍫","🧸","💝","💖"];
+
+function createFall(){
+  const el = document.createElement("div");
+  el.className="fall";
+  el.innerText = items[Math.floor(Math.random()*items.length)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.animationDuration = (3+Math.random()*4)+"s";
+  document.body.appendChild(el);
+
+  setTimeout(()=>el.remove(),7000);
+}
+
+setInterval(createFall, 300);
+
+</script>
+
+</body>
 </html>
